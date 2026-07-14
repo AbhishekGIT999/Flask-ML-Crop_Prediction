@@ -1,0 +1,161 @@
+/* General layout */
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    padding: 20px;
+    color: #fff;
+    /* ensures text is visible on background image */
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+}
+
+/* Heading and result styling */
+h1,
+h2,
+#result {
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+    /* makes text pop on any background */
+    margin-bottom: 20px;
+}
+
+/* Input fields */
+label {
+    display: block;
+    margin: 10px 0 5px;
+    font-weight: bold;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
+}
+
+input {
+    width: 250px;
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    margin-bottom: 15px;
+    font-size: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Animated submit button */
+button {
+    display: inline-block;
+    padding: 15px 40px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #00c6ff, #0072ff);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Smooth hover animation */
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+}
+
+/* Ripple effect on click */
+button:active::after {
+    content: "";
+    position: absolute;
+    width: 120%;
+    height: 120%;
+    top: -10%;
+    left: -10%;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    from {
+        transform: scale(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+/* Result section */
+#result {
+    display: inline-block;
+    max-width: 90%;
+    margin: 30px auto 0;
+    padding: 32px 42px;
+    border-radius: 36px;
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    backdrop-filter: blur(20px);
+    box-shadow: 0 28px 90px rgba(0, 0, 0, 0.35), inset 0 0 0 1px rgba(255, 255, 255, 0.12);
+    font-size: 26px;
+    font-weight: 900;
+    letter-spacing: 0.75px;
+    color: #f8fbff;
+    text-shadow: 2px 2px 14px rgba(0, 0, 0, 0.6);
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+#result::before {
+    content: "";
+    position: absolute;
+    top: -20%;
+    left: -20%;
+    width: 140%;
+    height: 140%;
+    background: radial-gradient(circle at top left, rgba(255, 255, 255, 0.35), transparent 40%);
+    pointer-events: none;
+    opacity: 0.75;
+}
+
+#result::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 36px;
+    box-shadow: inset 0 0 0 1px rgba(0, 198, 255, 0.25), 0 0 100px rgba(0, 198, 255, 0.08);
+    pointer-events: none;
+}
+
+#result:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 32px 100px rgba(0, 0, 0, 0.45), 0 0 0 2px rgba(255, 255, 255, 0.08);
+}
+
+/* background image */
+body {
+    /* background-image: url('https://copilot.microsoft.com/th/id/BCO.e846be5b-54a7-47eb-bf31-9f2eee82415d.png'); */
+    background-image: url('Copilot_20260705_115853.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;
+    }
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    /* subtle dark overlay */
+    z-index: -1;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Crop Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" type="text/css">
+</head>
+
+<body>
+
+    <h1>Crop Prediction Model</h1>
+
+    <div>
+        <div>
+            <label for="nitrogen">Nitrogen</label>
+            <input type="number" id="nitrogen" placeholder="Enter Nitrogen value" required name="nitrogen">
+        </div>
+        <div>
+            <label for="phosphorus">Phosphorus</label>
+            <input type="number" id="phosphorus" placeholder="Enter Phosphorus value" name="phosphorus" required>
+        </div>
+        <div>
+            <label for="potassium">Potassium</label>
+            <input type="number" id="potassium" placeholder="Enter Potassium value" name="potassium" required>
+        </div>
+        <div>
+            <label for="humidity">Humidity</label>
+            <input type="number" id="humidity" required placeholder="Enter Humidity (%)" name="humidity">
+        </div>
+        <div>
+            <label for="ph">pH</label>
+            <input type="number" step="0.1" id="ph" placeholder="Enter Soil pH" required name="ph">
+        </div>
+        <div>
+            <label for="temperature">Temperature</label>
+            <input type="number" id="temperature" placeholder="Enter Temperature (°C)" required name="temperature">
+        </div>
+        <div>
+            <label for="rainfall">Rainfall</label>
+            <input type="number" id="rainfall" placeholder="Enter Rainfall (mm)" required name="rainfall">
+        </div>
+        <div>
+            <button onclick="predictCrop()">Predict Crop</button>
+        </div>
+    </div>
+
+    <h1 id="result">{{ prediction_text }}</h1>
+
+    <script>
+        function predictCrop() {
+            const form = document.createElement("form");
+            form.method = "POST";
+            form.action = "/predict";
+
+            const fields = ["nitrogen", "phosphorus", "potassium", "temperature", "humidity", "ph", "rainfall"];
+            fields.forEach(id => {
+                const input = document.createElement("input");
+                input.type = "hidden";
+                input.name = id;
+                input.value = document.getElementById(id).value;
+                form.appendChild(input);
+            });
+
+            document.body.appendChild(form);
+            form.submit();
+        }
+
+        // fuction to clear the input fields after submission
+        function clearFields() {
+            const fields = ["nitrogen", "phosphorus", "potassium", "temperature", "humidity", "ph", "rainfall"];
+            fields.forEach(id => {
+                document.getElementById(id).value = "";
+            });
+        }
+    </script>
+
+</body>
+
+</html>
